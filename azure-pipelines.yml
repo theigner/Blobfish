@@ -30,3 +30,10 @@ steps:
       PathtoPublish: './nupkg'
       ArtifactName: 'PackageDrop'
       publishLocation: 'Container'
+
+  - task: NuGetCommand@2
+    inputs:
+      command: 'push'
+      packagesToPush: './nupkg/*.nupkg;!./nupkg/*.symbols.nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: '09327a35-bd7e-4966-b5f1-e3fdd2b698c0/093a11ec-a3fd-4f31-9750-172459338097'
