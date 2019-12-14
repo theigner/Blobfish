@@ -24,3 +24,9 @@ steps:
     displayName: 'Build Script'
     inputs:
       filePath: './build.sh'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: './nupkg'
+      ArtifactName: 'PackageDrop'
+      publishLocation: 'Container'
