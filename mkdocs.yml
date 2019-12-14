@@ -17,7 +17,7 @@ nav:
     - Home: index.md
     - The AnIML format:
         - Top level collections: animl/toplevelcollections.md
-    - Blobfish1 Quickstart:
+    - Blobfish Quickstart:
         - Read an AnIML document: quickstart/readanimldoc.md
         - Create your first AnIML document: quickstart/createfirstanimldoc.md
         - Read an AnIML document: quickstart/validateanimldoc.md
