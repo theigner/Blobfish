@@ -3,6 +3,7 @@ Blobfish is a .NET Standard library that allows you to read and write AnIML file
 
 For project documentation, please visit [readthedocs](https://blobfish.readthedocs.io).
 
+[![Build Status](https://dev.azure.com/theigner/Blobfish/_apis/build/status/theigner.Blobfish?branchName=master)](https://dev.azure.com/theigner/Blobfish/_build/latest?definitionId=3&branchName=master)
 [![Documentation Status](https://readthedocs.org/projects/blobfish/badge/?version=latest)](https://blobfish.readthedocs.io/en/latest/?badge=latest)
 
 # About AnIML
