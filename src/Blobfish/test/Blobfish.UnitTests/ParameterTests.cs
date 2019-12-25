@@ -70,14 +70,14 @@
             ((EmbeddedXml)parameter.Value).XmlString.Should().Be("<xml>Test</xml>");
             parameter.ParameterType.Should().Be(ParameterType.EmbeddedXML);
 
-            byte[] pngBytes = File.ReadAllBytes(@"..\..\..\files\circle.png");
+            byte[] pngBytes = File.ReadAllBytes(@"files\circle.png");
             parameter.Value = new PngImage(pngBytes);
             valueType = parameter.Value.GetType();
             valueType.Should().Be(typeof(PngImage));
             ((PngImage)parameter.Value).ImageBytes.Should().BeEquivalentTo(pngBytes);
             parameter.ParameterType.Should().Be(ParameterType.PNG);
 
-            string svgString = File.ReadAllText(@"..\..\..\files\circle.svg");
+            string svgString = File.ReadAllText(@"files\circle.svg");
             parameter.Value = new SvgImage(svgString);
             valueType = parameter.Value.GetType();
             valueType.Should().Be(typeof(SvgImage));
