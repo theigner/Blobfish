@@ -1,0 +1,195 @@
+﻿namespace Blobfish
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Xml.Linq;
+
+    /// <summary>
+    /// A ValueSet with values that are implicitly specified by StartValue and Increment.
+    /// </summary>
+    public class AutoIncrementedValueSet : ValueSet
+    {
+        /// <summary>
+        /// Creates a new instance of class AutoIncrementedValueSet.
+        /// </summary>
+        /// <param name="startValue">The first value in the ValueSet.</param>
+        /// <param name="increment">The increment value that is added to calculate the following value(s).</param>
+        /// <remarks>StartValue and Increment must be of the same type.</remarks>
+        public AutoIncrementedValueSet(dynamic startValue, dynamic increment)
+        {
+            this.EnsureValueTypesAreAllowedAndMatch(startValue, increment);
+
+            this.StartValue = startValue;
+            this.Increment = increment;
+        }
+
+        /// <summary>
+        /// Creates a new instance of class AutoIncrementedValueSet.
+        /// </summary>
+        /// <param name="startValue">The first value in the ValueSet.</param>
+        /// <param name="increment">The increment value that is added to calculate the following value(s).</param>
+        public AutoIncrementedValueSet(int startValue, int increment)
+        {
+            this.StartValue = startValue;
+            this.Increment = increment;
+        }
+
+        /// <summary>
+        /// Creates a new instance of class AutoIncrementedValueSet.
+        /// </summary>
+        /// <param name="startValue">The first value in the ValueSet.</param>
+        /// <param name="increment">The increment value that is added to calculate the following value(s).</param>
+        public AutoIncrementedValueSet(long startValue, long increment)
+        {
+            this.StartValue = startValue;
+            this.Increment = increment;
+        }
+
+        /// <summary>
+        /// Creates a new instance of class AutoIncrementedValueSet.
+        /// </summary>
+        /// <param name="startValue">The first value in the ValueSet.</param>
+        /// <param name="increment">The increment value that is added to calculate the following value(s).</param>
+        public AutoIncrementedValueSet(float startValue, float increment)
+        {
+            this.StartValue = startValue;
+            this.Increment = increment;
+        }
+
+        /// <summary>
+        /// Creates a new instance of class AutoIncrementedValueSet.
+        /// </summary>
+        /// <param name="startValue">The first value in the ValueSet.</param>
+        /// <param name="increment">The increment value that is added to calculate the following value(s).</param>
+        public AutoIncrementedValueSet(double startValue, double increment)
+        {
+            this.StartValue = startValue;
+            this.Increment = increment;
+        }
+
+        internal AutoIncrementedValueSet()
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the first value in the ValueSet.
+        /// </summary>
+        public dynamic StartValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the increment value that is added to calcuate the following value(s).
+        /// </summary>
+        public dynamic Increment { get; set; }
+
+        /// <summary>
+        /// Determines if values in the ValueSet are in ascending or descending order.
+        /// </summary>
+        /// <returns>True if the values are in descending order, otherwise false.</returns>
+        /// <remarks>The order is determined from the Increment value. If the Increment is less than 0 the values are in descending order.</remarks>
+        public override bool IsInReverseOrder()
+        {
+            if (this.Increment != null)
+            {
+                if (this.Increment.GetType() == typeof(int))
+                {
+                    return ((int)this.Increment) < 0;
+                }
+                else if (this.Increment.GetType() == typeof(long))
+                {
+                    return ((long)this.Increment) < 0;
+                }
+                else if (this.Increment.GetType() == typeof(float))
+                {
+                    return ((float)this.Increment) < 0;
+                }
+                else if (this.Increment.GetType() == typeof(double))
+                {
+                    return ((double)this.Increment) < 0;
+                }
+                else
+                {
+                    throw new TypeNotAllowedException();
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("The Increment value of the AutoIncrementedValueSet is null.");
+            }
+        }
+
+        /// <summary>
+        /// Returns the values of the ValueSet as List.
+        /// </summary>
+        /// <param name="length">The number of values in the ValueSet.</param>
+        /// <returns>The values for the ValueSet are generated by calculating a series of values starting from StartValue with a difference of Increment and a count of the supplied length.</returns>
+        public override List<dynamic> ToList(int length)
+        {
+            this.EnsureValueTypesAreAllowedAndMatch(this.StartValue, this.Increment);
+
+            List<dynamic> values = new List<dynamic>();
+
+            for (int i = 0; i < length; i++)
+            {
+                values.Add(this.StartValue + (i * this.Increment));
+            }
+
+            return values;
+        }
+
+        private void EnsureValueTypesAreAllowedAndMatch(dynamic value1, dynamic value2)
+        {
+            if (value1 == null)
+            {
+                throw new ArgumentNullException(nameof(value1));
+            }
+
+            if (value2 == null)
+            {
+                throw new ArgumentNullException(nameof(value2));
+            }
+
+            DynamicValueHelper.EnsureValidNumericDataType(value1);
+            DynamicValueHelper.EnsureValidNumericDataType(value2);
+
+            if (value1.GetType() != value2.GetType())
+            {
+                throw new ArgumentException("Types of values do not match.");
+            }
+        }
+
+        internal static AutoIncrementedValueSet FromXElement(XElement autoIncrementedValueSetElement, SeriesType seriesType)
+        {
+            if (seriesType == SeriesType.Int32 || seriesType == SeriesType.Int64 || seriesType == SeriesType.Float32 || seriesType == SeriesType.Float64)
+            {
+                AutoIncrementedValueSet autoIncrementedValueSet = new AutoIncrementedValueSet();
+
+                //// Import attributes for the implemented interfaces
+                autoIncrementedValueSet.ImportIValueSet(autoIncrementedValueSetElement);
+
+                //// Import the child elements of the current object
+                autoIncrementedValueSet.StartValue = autoIncrementedValueSetElement.Element(NamespaceHelper.GetXName("StartValue")).ImportNumericValue();
+                autoIncrementedValueSet.Increment = autoIncrementedValueSetElement.Element(NamespaceHelper.GetXName("Increment")).ImportNumericValue();
+                
+                return autoIncrementedValueSet;
+            }
+            else
+            {
+                throw new TypeNotAllowedException($"SeriesType '{seriesType}' is not allowed for AutoIncrementedValueSet.");
+            }
+        }
+
+        internal XElement ToXElement()
+        {
+            XElement autoIncrementedValueSetElement = new XElement(NamespaceHelper.GetXName("AutoIncrementedValueSet"));
+
+            //// Export attributes of all implemented interfaces
+            autoIncrementedValueSetElement.ImportIValueSet(this);
+
+            //// Export the child elements of the current object
+            autoIncrementedValueSetElement.Add(new XElement(NamespaceHelper.GetXName("StartValue"), DynamicValueHelper.XElementFromValue(this.StartValue)));
+            autoIncrementedValueSetElement.Add(new XElement(NamespaceHelper.GetXName("Increment"), DynamicValueHelper.XElementFromValue(this.Increment)));
+
+            return autoIncrementedValueSetElement;
+        }
+    }
+}

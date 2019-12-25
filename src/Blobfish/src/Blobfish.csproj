@@ -18,11 +18,33 @@
     <PackageTags>Blobfish;AnIML</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="MinVer" Version="2.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(MSBuildProjectName).UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Schemas\animl-core-0_90.xsd" />
+    <None Remove="Schemas\xmldsig-core-schema.xsd" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Schemas\animl-core-0_90.xsd" />
+    <EmbeddedResource Include="Schemas\xmldsig-core-schema.xsd" />
   </ItemGroup>
 
 </Project>
