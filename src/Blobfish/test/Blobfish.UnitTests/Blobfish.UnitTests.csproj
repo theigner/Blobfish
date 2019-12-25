@@ -18,4 +18,13 @@
     <ProjectReference Include="..\..\src\Blobfish.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="files\circle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="files\circle.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
