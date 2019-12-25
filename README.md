@@ -22,6 +22,13 @@ Please use the [GitHub Issue Tracker](https://github.com/theigner/Blobfish/issue
 # Versioning
 The current version of the Blobfish library implements the current AnIML standard version 0.9.
 
+# Package source
+The current pre-releases are not published on NuGet but are available on the following NuGet feed in Azure DevOps.
+
+```
+https://pkgs.dev.azure.com/theigner/Blobfish/_packaging/Blobfish/nuget/v3/index.json
+```
+
 # Credits
 The Blobfish libary is using the following open source projects:
 - [Bullseye](https://github.com/adamralph/bullseye) in combination with [SimpleExec](https://github.com/adamralph/simple-exec) for building the project with Azure Pipelines.
