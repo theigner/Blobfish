@@ -5,6 +5,98 @@
 
     internal static class EnumConverter
     {
+        internal static XElement GetXmlRepresentation(this Action action)
+        {
+            string actionString;
+
+            switch (action)
+            {
+                case Action.Created:
+                    {
+                        actionString = "created";
+                        break;
+                    }
+
+                case Action.Modified:
+                    {
+                        actionString = "modified";
+                        break;
+                    }
+
+                case Action.Converted:
+                    {
+                        actionString = "converted";
+                        break;
+                    }
+
+                case Action.Read:
+                    {
+                        actionString = "read";
+                        break;
+                    }
+
+                case Action.Signed:
+                    {
+                        actionString = "signed";
+                        break;
+                    }
+
+                case Action.Deleted:
+                    {
+                        actionString = "deleted";
+                        break;
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified Action value is not valid.");
+                    }
+            }
+
+            return new XElement(NamespaceHelper.GetXName("Action"), actionString);
+        }
+
+        internal static Action ImportAction(this XElement actionElement)
+        {
+            switch (actionElement.Value)
+            {
+                case "created":
+                    {
+                        return Action.Created;
+                    }
+
+                case "modified":
+                    {
+                        return Action.Modified;
+                    }
+
+                case "converted":
+                    {
+                        return Action.Converted;
+                    }
+
+                case "read":
+                    {
+                        return Action.Read;
+                    }
+
+                case "signed":
+                    {
+                        return Action.Signed;
+                    }
+
+                case "deleted":
+                    {
+                        return Action.Deleted;
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified XmlRepresentation is not a valid value.");
+                    }
+            }
+        }
+
         internal static string GetXmlRepresentation(this ContainerType containerType)
         {
             switch (containerType)
@@ -418,6 +510,48 @@
                 case "produced":
                     {
                         return SamplePurpose.Produced;
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified XmlRepresentation is not a valid value.");
+                    }
+            }
+        }
+
+        internal static string GetXmlRepresentation(this Scope scope)
+        {
+            switch (scope)
+            {
+                case Scope.Element:
+                    {
+                        return "element";
+                    }
+
+                case Scope.Attributes:
+                    {
+                        return "attributes";
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified Scope value is not valid.");
+                    }
+            }
+        }
+
+        internal static Scope ImportScope(this XAttribute scopeAttribute)
+        {
+            switch (scopeAttribute.Value)
+            {
+                case "element":
+                    {
+                        return Scope.Element;
+                    }
+
+                case "attributes":
+                    {
+                        return Scope.Attributes;
                     }
 
                 default:

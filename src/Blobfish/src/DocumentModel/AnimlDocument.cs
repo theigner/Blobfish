@@ -30,6 +30,11 @@
         public SampleSet SampleSet { get; set; }
 
         /// <summary>
+        /// auditTrailEntrySetElement
+        /// </summary>
+        public AuditTrailEntrySet AuditTrailEntrySet { get; set; }
+
+        /// <summary>
         /// Version number of the AnIML Core Schema used in this document. Must be "0.90".
         /// </summary>
         public string Version { get; }
@@ -71,6 +76,7 @@
 
             animlDocument.SampleSet = SampleSet.FromXElement(animlElement.Element(NamespaceHelper.GetXName("SampleSet")));
             animlDocument.ExperimentStepSet = ExperimentStepSet.FromXElement(animlElement.Element(NamespaceHelper.GetXName("ExperimentStepSet")));
+            animlDocument.AuditTrailEntrySet = AuditTrailEntrySet.FromXElement(animlElement.Element(NamespaceHelper.GetXName("AuditTrailEntrySet")));
 
             return animlDocument;
         }
@@ -107,6 +113,11 @@
             if (this.ExperimentStepSet != null)
             {
                 animlElement.Add(this.ExperimentStepSet.ToXElement());
+            }
+
+            if (this.AuditTrailEntrySet != null)
+            {
+                animlElement.Add(this.AuditTrailEntrySet.ToXElement());
             }
 
             return xDoc;

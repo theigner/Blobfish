@@ -13,10 +13,14 @@
             //// Create a new AnimlDocument
             AnimlDocument document = new AnimlDocument();
 
-            //// Create
+            //// Create Sample(s) in the AnimlDocument
             CreateSamples(ref document);
 
+            //// Create ExperimentStep(s) in the AnimlDocument
             CreateExperimentSteps(ref document);
+
+            ////Create AuditTrailEntry(s) in the AnimlDocument
+            CreateAuditTrailEntries(ref document);
 
             //// Generate the AnIML document XML from the AnimlDocument object
             string docString = document.ToXml();
@@ -238,6 +242,16 @@
             expStepSet.ExperimentSteps.Add(expStep2);
 
             document.ExperimentStepSet = expStepSet;
+        }
+
+        private static void CreateAuditTrailEntries(ref AnimlDocument document)
+        {
+            document.AuditTrailEntrySet = new AuditTrailEntrySet();
+
+            Author author = new Author("John Doe", UserType.Human);
+            AuditTrailEntry auditTrailEntry = new AuditTrailEntry(DateTime.Now, author, Blobfish.Action.Created);
+            auditTrailEntry.Comment = "Creation of the AnIML document.";
+            document.AuditTrailEntrySet.AuditTrailEntries.Add(auditTrailEntry);
         }
 
         private static List<double> GenerateValues(int length, double min, double range)
