@@ -159,6 +159,48 @@
             }
         }
 
+        internal static string GetXmlRepresentation(this ExperimentDataPurpose experimentDataPurpose)
+        {
+            switch (experimentDataPurpose)
+            {
+                case ExperimentDataPurpose.Produced:
+                    {
+                        return "produced";
+                    }
+
+                case ExperimentDataPurpose.Consumed:
+                    {
+                        return "consumed";
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified ExperimentDataPurpose value is not valid.");
+                    }
+            }
+        }
+
+        internal static ExperimentDataPurpose ImportExperimentDataPurpose(this XAttribute experimentDataPurposeAttribute)
+        {
+            switch (experimentDataPurposeAttribute.Value)
+            {
+                case "consumed":
+                    {
+                        return ExperimentDataPurpose.Consumed;
+                    }
+
+                case "produced":
+                    {
+                        return ExperimentDataPurpose.Produced;
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified XmlRepresentation is not a valid value.");
+                    }
+            }
+        }
+
         internal static string GetXmlRepresentation(this ParameterType parameterType)
         {
             switch (parameterType)
@@ -334,6 +376,48 @@
                 case "none":
                     {
                         return PlotScale.None;
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified XmlRepresentation is not a valid value.");
+                    }
+            }
+        }
+
+        internal static string GetXmlRepresentation(this SamplePurpose samplePurpose)
+        {
+            switch (samplePurpose)
+            {
+                case SamplePurpose.Produced:
+                    {
+                        return "produced";
+                    }
+
+                case SamplePurpose.Consumed:
+                    {
+                        return "consumed";
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified SamplePurpose value is not valid.");
+                    }
+            }
+        }
+
+        internal static SamplePurpose ImportSamplePurpose(this XAttribute samplePurposeAttribute)
+        {
+            switch (samplePurposeAttribute.Value)
+            {
+                case "consumed":
+                    {
+                        return SamplePurpose.Consumed;
+                    }
+
+                case "produced":
+                    {
+                        return SamplePurpose.Produced;
                     }
 
                 default:
@@ -558,6 +642,58 @@
                 case "cd":
                     {
                         return SIBaseUnit.Candela;
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified XmlRepresentation is not a valid value.");
+                    }
+            }
+        }
+
+        internal static string GetXmlRepresentation(this UserType userType)
+        {
+            switch (userType)
+            {
+                case UserType.Human:
+                    {
+                        return "human";
+                    }
+
+                case UserType.Device:
+                    {
+                        return "device";
+                    }
+
+                case UserType.Software:
+                    {
+                        return "software";
+                    }
+
+                default:
+                    {
+                        throw new ArgumentException("Specified UserType value is not valid.");
+                    }
+            }
+        }
+
+        internal static UserType ImportUserType(this XAttribute userTypeAttribute)
+        {
+            switch (userTypeAttribute.Value)
+            {
+                case "human":
+                    {
+                        return UserType.Human;
+                    }
+
+                case "device":
+                    {
+                        return UserType.Device;
+                    }
+
+                case "software":
+                    {
+                        return UserType.Software;
                     }
 
                 default:

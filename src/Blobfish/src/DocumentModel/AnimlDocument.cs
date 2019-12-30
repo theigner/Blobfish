@@ -20,6 +20,11 @@
         }
 
         /// <summary>
+        /// Container for multiple ExperimentSteps that describe the process and results.
+        /// </summary>
+        public ExperimentStepSet ExperimentStepSet { get; set; }
+
+        /// <summary>
         /// Container for Samples used in this AnIML document.
         /// </summary>
         public SampleSet SampleSet { get; set; }
@@ -63,11 +68,21 @@
 
             AnimlDocument animlDocument = new AnimlDocument();
             XElement animlElement = xDoc.Root;
-            XNamespace ns = animlElement.GetDefaultNamespace().NamespaceName;
 
-            animlDocument.SampleSet = SampleSet.FromXElement(animlElement.Element(ns + "SampleSet"));
+            animlDocument.SampleSet = SampleSet.FromXElement(animlElement.Element(NamespaceHelper.GetXName("SampleSet")));
+            animlDocument.ExperimentStepSet = ExperimentStepSet.FromXElement(animlElement.Element(NamespaceHelper.GetXName("ExperimentStepSet")));
 
             return animlDocument;
+        }
+
+        /// <summary>
+        /// Saves the AnimlDocument as file.
+        /// </summary>
+        /// <param name="path">The path of the file to create.</param>
+        /// <param name="indentXml">True if the XML file should be created indented, otherwise false.</param>
+        public void SaveAsFile(string path, bool indentXml = true)
+        {
+            File.WriteAllText(path, this.ToXml(indentXml), new UTF8Encoding(false));
         }
 
         /// <summary>
@@ -87,6 +102,11 @@
             if (this.SampleSet != null)
             {
                 animlElement.Add(this.SampleSet.ToXElement());
+            }
+
+            if (this.ExperimentStepSet != null)
+            {
+                animlElement.Add(this.ExperimentStepSet.ToXElement());
             }
 
             return xDoc;
