@@ -11,9 +11,11 @@
         /// Creates a new instance of class ParentDataPointReference.
         /// </summary>
         /// <param name="seriesId">The identifier of the Series from that data points are referenced.</param>
-        public ParentDataPointReference(string seriesId)
+        /// <param name="startValue">The lower boundary of the referenced values.</param>
+        public ParentDataPointReference(string seriesId, dynamic startValue)
         {
             this.SeriesId = seriesId;
+            this.StartValue = startValue;
         }
 
         internal ParentDataPointReference()

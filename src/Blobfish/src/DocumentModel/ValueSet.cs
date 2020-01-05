@@ -9,7 +9,7 @@
     public abstract class ValueSet : List<dynamic>, IValueSet
     {
         /// <summary>
-        /// Zero-based index of the first entry in this Value Set. The specification is inclusive.
+        /// Zero-based index of the last entry in this Value Set. The specification is inclusive.
         /// </summary>
         public int? EndIndex { get; set; }
 

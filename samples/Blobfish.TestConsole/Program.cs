@@ -201,7 +201,7 @@
 
             //// Create a Result for the 1st ExperimentStep
             Result pHResult = new Result("pH");
-            pHResult.SeriesSet = new SeriesSet("pH Measurement", 50);
+            pHResult.SeriesSet = new SeriesSet("pH Measurement", values.Count);
             Series phTimeSeries = new Series("Time", "SER-PH-TIME", Dependency.Independent, SeriesType.Int32);
             phTimeSeries.PlotScale = PlotScale.Linear;
             phTimeSeries.ValueSets.Add(new AutoIncrementedValueSet(0, 1));

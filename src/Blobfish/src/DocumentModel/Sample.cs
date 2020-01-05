@@ -67,7 +67,7 @@
         /// <summary>
         /// Gets the identfier of the Sample.
         /// </summary>
-        public string SampleId { get; private set; }
+        public string SampleId { get; set; }
 
         /// <summary>
         /// Gets or sets the TagSet for the Sample.
