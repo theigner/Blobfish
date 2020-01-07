@@ -1,4 +1,4 @@
-﻿namespace Blobfish.DocumentModel.Builders
+﻿namespace Blobfish.Builders
 {
     using System.Collections.Generic;
 

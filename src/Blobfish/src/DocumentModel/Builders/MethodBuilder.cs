@@ -19,7 +19,7 @@
             return this;
         }
 
-        public MethodBuilder WithCategory(IEnumerable<Category> categories)
+        public MethodBuilder WithCategories(IEnumerable<Category> categories)
         {
             this.method.Categories.AddRange(categories);
             return this;

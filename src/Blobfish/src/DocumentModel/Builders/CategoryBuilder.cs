@@ -37,6 +37,12 @@
             return this;
         }
 
+        public CategoryBuilder WithParameter(string name, dynamic value, Unit unit = null)
+        {
+            this.category.Parameters.Add(new Parameter(name, value, unit));
+            return this;
+        }
+
         public CategoryBuilder WithParameters(IEnumerable<Parameter> parameters)
         {
             this.category.Parameters.AddRange(parameters);

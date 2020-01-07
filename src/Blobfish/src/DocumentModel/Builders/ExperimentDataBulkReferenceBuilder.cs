@@ -1,4 +1,4 @@
-﻿namespace Blobfish.DocumentModel.Builders
+﻿namespace Blobfish.Builders
 {
     public class ExperimentDataBulkReferenceBuilder
     {

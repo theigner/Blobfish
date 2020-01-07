@@ -304,9 +304,9 @@
             {
                 return new UnitBuilder("kV")
                     .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e+3))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1, 2))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, 1, -1))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, 1, -3)).Build();
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -3)).Build();
             }
         }
 
@@ -316,9 +316,9 @@
             {
                 return new UnitBuilder("V")
                     .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1, 2))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, 1, -1))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, 1, -3)).Build();
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -3)).Build();
             }
         }
 
@@ -328,9 +328,9 @@
             {
                 return new UnitBuilder("mV")
                     .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-3))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1, 2))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, 1, -1))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, 1, -3)).Build();
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -3)).Build();
             }
         }
 
@@ -340,9 +340,9 @@
             {
                 return new UnitBuilder("µV")
                     .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-6))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1, 2))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, 1, -1))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, 1, -3)).Build();
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -3)).Build();
             }
         }
 
@@ -352,9 +352,9 @@
             {
                 return new UnitBuilder("nV")
                     .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-9))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1, 2))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, 1, -1))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, 1, -3)).Build();
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -3)).Build();
             }
         }
 
@@ -364,9 +364,9 @@
             {
                 return new UnitBuilder("pV")
                     .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-12))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1, 2))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, 1, -1))
-                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, 1, -3)).Build();
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -3)).Build();
             }
         }
 
@@ -449,6 +449,275 @@
                 return new UnitBuilder("RIU").WithSIUnit(new SIUnit(SIBaseUnit.One, 1, 1)).Build();
             }
         }
+
+        #endregion
+
+        #region Derived Units - Volume
+
+        public static Unit Liter
+        {
+            get
+            {
+                return new UnitBuilder("L")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-03, 3))
+                    .Build();
+            }
+        }
+
+        public static Unit Milliliter
+        {
+            get
+            {
+                return new UnitBuilder("L")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, 3))
+                    .Build();
+            }
+        }
+
+        public static Unit Microliter
+        {
+            get
+            {
+                return new UnitBuilder("L")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-09, 3))
+                    .Build();
+            }
+        }
+
+        public static Unit Nanoliter
+        {
+            get
+            {
+                return new UnitBuilder("L")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-12, 3))
+                    .Build();
+            }
+        }
+
+        #endregion
+
+        #region Derived Units - Concentration
+
+        public static Unit GramPerMilliliter
+        {
+            get
+            {
+                return new UnitBuilder("g/mL")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-03, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, -3))
+                    .Build();
+            }
+        }
+
+        public static Unit MilligramPerMilliliter
+        {
+            get
+            {
+                return new UnitBuilder("mg/mL")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-06, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, -3))
+                    .Build();
+            }
+        }
+
+        public static Unit MikrogramPerMilliliter
+        {
+            get
+            {
+                return new UnitBuilder("µg/mL")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-09, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, -3))
+                    .Build();
+            }
+        }
+
+        public static Unit NanogramPerMilliliter
+        {
+            get
+            {
+                return new UnitBuilder("ng/mL")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-12, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, -3))
+                    .Build();
+            }
+        }
+
+        public static Unit MililiterPerMilliliter
+        {
+            get
+            {
+                return new UnitBuilder("mL/mL")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, 3))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, -3))
+                    .Build();
+            }
+        }
+
+        public static Unit MililiterPerLiter
+        {
+            get
+            {
+                return new UnitBuilder("mL/L")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-06, 3))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-03, -3))
+                    .Build();
+            }
+        }
+
+        public static Unit MolPerLiter
+        {
+            get
+            {
+                return new UnitBuilder("mol/L")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Mol, 1, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-03, -3))
+                    .Build();
+            }
+        }
+
+        public static Unit MikrogramPerGram
+        {
+            get
+            {
+                return new UnitBuilder("µg/g")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-09, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-03, -1))
+                    .Build();
+            }
+        }
+
+        public static Unit KilogramPerSquareCentimeter
+        {
+            get
+            {
+                return new UnitBuilder("kgf/cm²")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, exponent: 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-04, -2))
+                    .Build();
+            }
+        }
+
+        #endregion
+
+        #region Derived Units - Current per Voltage
+
+        public static Unit AmperePerVolt
+        {
+            get
+            {
+                return new UnitBuilder("A/V")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: 3))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: -2))
+                    .Build();
+            }
+        }
+
+        #endregion
+
+        #region Derived Units - Bandwidth / Voltage per Time
+
+        public static Unit MillivoltPerSecond
+        {
+            get
+            {
+                return new UnitBuilder("mV/s")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-3))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -4)).Build();
+            }
+        }
+
+        public static Unit MikrovoltPerSecond
+        {
+            get
+            {
+                return new UnitBuilder("µV/s")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1e-6))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Ampere, exponent: -1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -4)).Build();
+            }
+        }
+
+        #endregion
+
+        #region Derived Units - Velocity
+
+        public static Unit CentimeterPerSecond
+        {
+            get
+            {
+                return new UnitBuilder("cm/s")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e-02, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -1)).Build();
+            }
+        }
+
+        public static Unit MeterPerSecond
+        {
+            get
+            {
+                return new UnitBuilder("m/s")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -1)).Build();
+            }
+        }
+
+        public static Unit KilometerPerHour
+        {
+            get
+            {
+                return new UnitBuilder("km/h")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, 1e03, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, 3600, -1)).Build();
+            }
+        }
+
+        #endregion
+
+        #region Derived Units - Energy
+
+        public static Unit Electronvolt
+        {
+            get
+            {
+                return new UnitBuilder("eV")
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Kilogram, 1.602176634, 1))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Meter, exponent: 2))
+                    .WithSIUnit(new SIUnit(SIBaseUnit.Second, exponent: -2)).Build();
+            }
+        }
+
+        #endregion
+
+        #region Derived Units - Pressure
+
+        #endregion
+
+        #region Derived Units - Density
+
+        #endregion
+
+        #region Derived Units - Molar Mass
+
+        #endregion
+
+        #region Derived Units - Temperature change per time
+
+        #endregion
+
+        #region Derived Units - Volume per time and derived units
+
+        #endregion
+
+        #region Derived Units - Pressure change per time
+
+        #endregion
+
+        #region Derived Units - Other rate definitions
 
         #endregion
     }

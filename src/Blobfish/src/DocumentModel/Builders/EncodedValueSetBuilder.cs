@@ -4,7 +4,7 @@
 
     public class EncodedValueSetBuilder
     {
-        public EncodedValueSet encodedValueSet;
+        private EncodedValueSet encodedValueSet;
 
         public EncodedValueSetBuilder(SeriesType seriesType)
         {

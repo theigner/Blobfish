@@ -77,8 +77,7 @@
                                                         .WithId("SER-TIME")
                                                         .WithPlotScale(PlotScale.Linear)
                                                         .WithUnit(Units.Second)
-                                                        .WithValueSet(
-                                                            new AutoIncrementedValueSetBuilder(0, 1).Build())
+                                                        .WithAutoIncrementedValueSet(0, 1)
                                                         .WithVisible(true)
                                                         .Build())
                                                  .WithSeries(
@@ -86,8 +85,7 @@
                                                         .WithId("SER-VALS")
                                                         .WithPlotScale(PlotScale.Linear)
                                                         .WithUnit(Units.Arbitrary)
-                                                        .WithValueSet(
-                                                            new EncodedValueSetBuilder(values).Build())
+                                                        .WithEncodedValueSet(values)
                                                         .WithVisible(true)
                                                         .Build())
                                                  .Build())
